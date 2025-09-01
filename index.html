@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Kar - Complete Business Management Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7',
+                        primaryDark: '#5649c0',
+                        primaryLight: '#a29bfe',
+                        secondary: '#ff9f43',
+                        dark: '#2d3436',
+                        light: '#f5f6fa'
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f6fa;
+            color: #2d3436;
+            overflow-x: hidden;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: #6c5ce7;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #5649c0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: #ff9f43;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #ff7f17;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .dashboard-preview {
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: perspective(1000px) rotateY(-10deg) rotateX(5deg);
+            transition: all 0.5s ease;
+        }
+
+        .dashboard-preview:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .login-form,
+        .register-form {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+
+        .footer {
+            background: #2d3436;
+        }
+    </style>
+</head>
+
+<body class="font-poppins">
+    <!-- Header with Login/Register -->
+    <header class="fixed w-full z-50">
+        <nav class="navbar py--4 px-6 md:px-12 flex justify-between items-center">
+            <div class="flex items-center">
+                <img style="width: 10vw;" src="https://pay-kar.com/public/assets/logos/logo.png" alt="">
+                <!-- <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mr-3">PK</div>
+                <span class="text-2xl font-bold text-primary">Pay <span class="text-secondary">Kar</span></span> -->
+            </div>
+
+            <div class="hidden md:flex space-x-10">
+                <a href="#" class="text-dark hover:text-primary transition">Home</a>
+                <a href="#" class="text-dark hover:text-primary transition">Features</a>
+                <a href="#" class="text-dark hover:text-primary transition">Pricing</a>
+                <a href="#" class="text-dark hover:text-primary transition">About</a>
+                <a href="#" class="text-dark hover:text-primary transition">Contact</a>
+            </div>
+
+            <div class="flex space-x-4">
+                <button onclick="openLoginModal()"
+                    class="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition">Login</button>
+                <button onclick="openRegisterModal()"
+                    class="px-6 py-2 rounded-full bg-primary text-white hover:bg-primaryDark transition">Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient pt-32 pb-20 px-6 md:px-12 text-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Revolutionize Your Business with <span
+                        class="text-secondary">Pay Kar</span></h1>
+                <p class="text-xl mb-8">FBR Integrated Complete Business Management Solution - Inventory, POS, Sales
+                    Tracking, Accounting, Tax Management and more in one powerful platform.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn-secondary px-8 py-4 rounded-full text-lg font-semibold">Start Free Trial</button>
+                    <button
+                        class="border-2 border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-primary transition">Watch
+                        Demo</button>
+                </div>
+            </div>
+            <div class="relative">
+                <div style="display: flex;justify-content: center;width: 33vw;margin-left: 70px;"
+                    class="dashboard-preview overflow-hidden">
+                    <img style="width: 33vw;" src="https://pay-kar.com/public/assets/og-image.jpg">
+                    <!-- <img src="https://paykar.webberners.com/pages/Dashboard/dashboard.php" alt="Pay Kar Dashboard" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/600x400/6c5ce7/ffffff?text=Pay+Kar+Dashboard'"> -->
+                </div>
+                <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary rounded-full animate-float"></div>
+                <div class="absolute -top-6 -right-6 w-20 h-20 bg-white rounded-full animate-float"
+                    style="animation-delay: 1s;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="stat-card text-center p-6 rounded-lg bg-light">
+                <div class="text-4xl font-bold text-primary mb-2">500+</div>
+                <div class="text-dark">Active Businesses</div>
+            </div>
+            <div class="stat-card text-center p-6 rounded-lg bg-light">
+                <div class="text-4xl font-bold text-primary mb-2">98%</div>
+                <div class="text-dark">Customer Satisfaction</div>
+            </div>
+            <div class="stat-card text-center p-6 rounded-lg bg-light">
+                <div class="text-4xl font-bold text-primary mb-2">24/7</div>
+                <div class="text-dark">Support Available</div>
+            </div>
+            <div class="stat-card text-center p-6 rounded-lg bg-light">
+                <div class="text-4xl font-bold text-primary mb-2">10+</div>
+                <div class="text-dark">Business Modules</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 px-6 bg-light">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-dark">Complete Business Management Suite
+            </h2>
+            <p class="text-xl text-center text-gray-600 mb-16">Everything you need to run your business efficiently</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-cubes text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">Inventory Management</h3>
+                    <p class="text-gray-600 text-center">Track stock levels, manage suppliers, and automate reordering
+                        with our advanced inventory system.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-cash-register text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">POS System</h3>
+                    <p class="text-gray-600 text-center">Streamline your sales process with our intuitive point-of-sale
+                        system that works online and offline.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-chart-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">Sales Tracking</h3>
+                    <p class="text-gray-600 text-center">Monitor sales performance, track customer behavior, and
+                        identify trends with detailed analytics.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">Customer Management</h3>
+                    <p class="text-gray-600 text-center">Build lasting relationships with your customers through our
+                        comprehensive CRM tools.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-file-invoice-dollar text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">Tax Management</h3>
+                    <p class="text-gray-600 text-center">Stay compliant with FBR regulations with automated tax
+                        calculations and reporting.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white p-8 rounded-2xl shadow-lg transition">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-hand-holding-usd text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-dark">Accounting</h3>
+                    <p class="text-gray-600 text-center">Manage your finances with complete accounting tools including
+                        ledgers, balance sheets, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FBR Integration Section -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-dark">Seamless <span class="text-primary">FBR
+                        Integration</span></h2>
+                <p class="text-xl mb-8 text-gray-600">Our direct integration with the Federal Board of Revenue ensures
+                    that your business remains compliant with all tax regulations. Automate sales tax calculations,
+                    generate compliant invoices, and submit reports directly to FBR.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight flex items-center justify-center mr-4">
+                            <i class="fas fa-check text-primary"></i>
+                        </div>
+                        <span class="text-lg">Automated Sales Tax Calculations</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight flex items-center justify-center mr-4">
+                            <i class="fas fa-check text-primary"></i>
+                        </div>
+                        <span class="text-lg">FBR-Compliant Invoice Generation</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight flex items-center justify-center mr-4">
+                            <i class="fas fa-check text-primary"></i>
+                        </div>
+                        <span class="text-lg">Direct Report Submission to FBR</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-primaryLight flex items-center justify-center mr-4">
+                            <i class="fas fa-check text-primary"></i>
+                        </div>
+                        <span class="text-lg">Real-time Tax Liability Tracking</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative">
+                <img src="https://pay-kar.com/public/assets/og-image.jpg" alt="FBR Integration"
+                    class="rounded-2xl shadow-xl w-full">
+                <!-- <img src="https://via.placeholder.com/500x400/6c5ce7/ffffff?text=FBR+Integration" alt="FBR Integration" class="rounded-2xl shadow-xl w-full"> -->
+                <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-secondary rounded-full animate-float"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6 bg-light">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-dark">What Our Customers Say</h2>
+            <p class="text-xl text-center text-gray-600 mb-16">Join thousands of satisfied businesses using Pay Kar</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full bg-primaryLight flex items-center justify-center text-primary font-bold text-xl mr-4">
+                            AR</div>
+                        <div>
+                            <h4 class="font-bold text-dark">Ahmed Raza</h4>
+                            <p class="text-secondary">Retail Business Owner</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Pay Kar has transformed how we manage our inventory and sales. The FBR
+                        integration alone has saved us countless hours of manual work."</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full bg-primaryLight flex items-center justify-center text-primary font-bold text-xl mr-4">
+                            SA</div>
+                        <div>
+                            <h4 class="font-bold text-dark">Sara Ali</h4>
+                            <p class="text-secondary">Restaurant Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The POS system is incredibly intuitive, and our staff learned it in no
+                        time. Customer support has been exceptional whenever we've needed help."</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white p-8 rounded-2xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full bg-primaryLight flex items-center justify-center text-primary font-bold text-xl mr-4">
+                            MK</div>
+                        <div>
+                            <h4 class="font-bold text-dark">Mohammad Khan</h4>
+                            <p class="text-secondary">Wholesale Distributor</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The inventory management features have helped us reduce stockouts and
+                        overstock situations. Our operational efficiency has improved dramatically."</p>
+                    <div class="flex mt-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-20 px-6 text-white">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p class="text-xl mb-10">Join thousands of businesses using Pay Kar to streamline their operations and boost
+                profitability.</p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <button class="btn-secondary px-8 py-4 rounded-full text-lg font-semibold">Start Free Trial</button>
+                <button
+                    class="bg-white text-primary px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition">Schedule
+                    a Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+            <div>
+                <img style="width: 16vw;" src="https://pay-kar.com/public/assets/logos/logo.png" alt="">
+
+                <!-- <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl mr-3">PK</div>
+                    <span class="text-2xl font-bold">Pay <span class="text-secondary">Kar</span></span>
+                </div> -->
+                <p class="text-gray-300 mb-6">Complete business management solution for businesses of all sizes.</p>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-primaryDark flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-primaryDark flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-primaryDark flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-primaryDark flex items-center justify-center hover:bg-primary transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Home</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Features</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Pricing</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold mb-6">Features</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Inventory Management</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">POS System</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Sales Tracking</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Customer Management</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition">Tax Management</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-secondary mt-1 mr-3"></i>
+                        <span class="text-gray-300">123 Business Street, Karachi, Pakistan</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt text-secondary mr-3"></i>
+                        <span class="text-gray-300">+92 321 1234567</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope text-secondary mr-3"></i>
+                        <span class="text-gray-300">info@paykar.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+            <p>&copy; 2023 Pay Kar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="login-form w-full max-w-md mx-4 p-8 rounded-2xl">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-primary mb-2">Login to Your Account</h2>
+                <p class="text-gray-600">Access your business dashboard</p>
+            </div>
+
+            <form>
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Email Address</label>
+                    <input type="email"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Password</label>
+                    <input type="password"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember"
+                            class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                        <label for="remember" class="ml-2 text-dark">Remember me</label>
+                    </div>
+                    <a href="#" class="text-primary hover:underline">Forgot Password?</a>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primaryDark transition">Login</button>
+            </form>
+
+            <div class="text-center mt-6">
+                <p class="text-dark">Don't have an account? <a href="#" class="text-primary hover:underline"
+                        onclick="openRegisterModal()">Register Now</a></p>
+            </div>
+
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-dark" onclick="closeLoginModal()">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="register-form w-full max-w-md mx-4 p-8 rounded-2xl">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-primary mb-2">Create an Account</h2>
+                <p class="text-gray-600">Start your journey with Pay Kar</p>
+            </div>
+
+            <form>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label class="block text-dark mb-2">First Name</label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-dark mb-2">Last Name</label>
+                        <input type="text"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Business Name</label>
+                    <input type="text"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Email Address</label>
+                    <input type="email"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Password</label>
+                    <input type="password"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-dark mb-2">Confirm Password</label>
+                    <input type="password"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <input type="checkbox" id="terms"
+                        class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                    <label for="terms" class="ml-2 text-dark">I agree to the <a href="#"
+                            class="text-primary hover:underline">Terms & Conditions</a></label>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primaryDark transition">Create
+                    Account</button>
+            </form>
+
+            <div class="text-center mt-6">
+                <p class="text-dark">Already have an account? <a href="#" class="text-primary hover:underline"
+                        onclick="openLoginModal()">Login Now</a></p>
+            </div>
+
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-dark" onclick="closeRegisterModal()">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openRegisterModal() {
+            document.getElementById('registerModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            closeLoginModal();
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('loginModal').addEventListener('click', function (e) {
+            if (e.target === document.getElementById('loginModal')) {
+                closeLoginModal();
+            }
+        });
+
+        document.getElementById('registerModal').addEventListener('click', function (e) {
+            if (e.target === document.getElementById('registerModal')) {
+                closeRegisterModal();
+            }
+        });
+
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeIn');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.feature-card, .stat-card, .testimonial-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+
+</html>
